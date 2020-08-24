@@ -41,6 +41,9 @@ jmp $
 ; part of our code.
 %include "disksect.asm"
 %include "print.asm"
+%include "32bit-switch.asm"
+%include "gdt.asm"
+%include "32bit-print.asm"
 
 ; Now for the important functions:
 ; First, the kernel loader.

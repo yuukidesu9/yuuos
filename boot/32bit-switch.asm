@@ -15,7 +15,8 @@ switch_protmode:
     mov eax, cr0
     or eax, 0x1
     ; And jump to our code segment!
-    jmp CODE_SEG:init_pm
+    jmp CODE_SEG
+    call init_pm
 
 ; 32-bit is now working its magic!
 [bits 32]
@@ -28,7 +29,7 @@ init_pm:
     mov fs, ax
     mov gs, ax
     ; Update our stack...
-    mov ebp, 0x90000
+    mov ebp, 0x900000
     mov esp, ebp
     ; And done!
     call begin_pm

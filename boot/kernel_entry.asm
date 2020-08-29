@@ -1,6 +1,8 @@
+global _start
 [bits 32]
-[extern main]
-; Here we'll call our kernel function.
-call main
-; And get into an infinite loop.
-jmp $
+[extern kernel_main]
+_start:
+    ; Here we'll call our kernel function.
+    call kernel_main
+    ; And get into an infinite loop.
+    jmp $

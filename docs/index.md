@@ -15,12 +15,13 @@ It's still in its very early development stages, AKA, I'm toying around with it 
 Some of these goals won't even be achieved, I think.
 
 - Create user input routines.
-- Create logging mechanisms.
+- Create logging and debugging routines.
 - Create file system management (namely FAT32, NTFS, ext2/3/4 and others).
-- Create drivers and kernel modules for audio, video (SVGA and beyond), networking and USB.
-- Create graphical UI with font and image support.
+- Create system utilities and integrate RTC from BIOS.
+- Create drivers and kernel modules for audio, video (SVGA and beyond, with 16, 24 or 32-bit colors), networking and USB.
+- Create GUI with font and image support.
 - Create software and port a Python interpreter.
-- Create environment for software portability and/or virtualization from other operating systems.
+- Create environment for software portability from other operating systems.
 
 ```markdown
 Ignore this part. It's just for reference.

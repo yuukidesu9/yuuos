@@ -1,10 +1,17 @@
-## Welcome to GitHub Pages
+## yuuOS - My operating system, I guess
 
+Hey there! Welcome to my little hut in GitHub, where I host code and releases for my operating system, yuuOS.
+
+The name choice it's quite obvious. I didn't want to put any fancy name, just a bit of my username.
 You can use the [editor on GitHub](https://github.com/yuukidesu9/yuuos/edit/gh-pages/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### What is it?
+
+
+
+### Future goals
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 

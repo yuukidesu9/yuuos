@@ -1,28 +1,26 @@
-## yuuOS - My operating system, I guess
+# yuuOS - My operating system, I guess
 
 Hey there! Welcome to my little hut in GitHub, where I host code and releases for my operating system, yuuOS.
 
-The name choice it's quite obvious. I didn't want to put any fancy name, just a bit of my username.
+The name choice it's quite obvious. I didn't want to put any fancy name on it, just a bit of my username.
 
 ### What is it?
 
+It's a hobby operating system for x86 computers (x86_64 in the future, maybe) written in C.
 
+It's still in its very early development stages, AKA, I'm toying around with it when I have spare time.
 
 ### Future goals
 
+- Create user input routines.
+- Create logging mechanisms.
+- Create file system management (namely FAT32, NTFS, ext2/3/4 and others).
+- Create drivers and kernel modules for audio, video (SVGA and beyond), networking and USB.
+- Create graphical UI with font and image support.
+- Create software and port a Python interpreter.
+- Create means for software portability and/or virtualization from other operating systems.
+
 ```markdown
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
+Ignore this part. It's just for reference.
 [Link](url) and ![Image](src)
 ```

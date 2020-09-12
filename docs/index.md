@@ -10,7 +10,9 @@ It's a hobby operating system for x86 computers (x86_64 in the future, maybe) wr
 
 It's still in its very early development stages, AKA, I'm toying around with it when I have spare time.
 
-### Future goals
+### Future goals (probably)
+
+Some of these goals won't even be achieved, I think.
 
 - Create user input routines.
 - Create logging mechanisms.
@@ -18,7 +20,7 @@ It's still in its very early development stages, AKA, I'm toying around with it 
 - Create drivers and kernel modules for audio, video (SVGA and beyond), networking and USB.
 - Create graphical UI with font and image support.
 - Create software and port a Python interpreter.
-- Create means for software portability and/or virtualization from other operating systems.
+- Create environment for software portability and/or virtualization from other operating systems.
 
 ```markdown
 Ignore this part. It's just for reference.

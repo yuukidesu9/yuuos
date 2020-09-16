@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+*.bin
+*.img
+*.elf
+
+#Dev environment files
+*.bxrc
+*.bat
+*.ld

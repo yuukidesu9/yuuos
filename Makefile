@@ -9,8 +9,8 @@ CC = /c/i686-elf/bin/i686-elf-gcc
 CFLAGS = -g
 
 # First rule is run by default
-os-image.img: boot/bootsect.bin kernel.bin
-	cat $^ > build/os-image.img
+os_image.img: boot/bootsect.bin kernel.bin
+	cat $^ > build/os_image.img
 
 # '--oformat binary' deletes all symbols as a collateral, so we don't need
 # to 'strip' them manually on this case
@@ -21,8 +21,8 @@ kernel.bin: boot/kernel_entry.o ${OBJ}
 kernel.elf: boot/kernel_entry.o ${OBJ}
 	i686-elf-ld -o $@ -Ttext 0x1000 $^ 
 
-run: os-image.img
-	qemu-system-i386 -fda build/os-image.img
+run: os_image.img
+	qemu-system-i386 -fda build/os_image.img
 
 # Generic rules for wildcards
 # To make an object, always compile from its .c

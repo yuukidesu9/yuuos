@@ -13,4 +13,5 @@ void kernel_main() {
     kprint_at("Testing, testing...", 0, 0);
     kprint("\nAw yiss, babe! It works!\n");
     kprint_at("h", 45, 24);
+    kprint_at("Welcome to yuuOS", 30, 11);
 }

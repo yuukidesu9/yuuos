@@ -8,13 +8,12 @@ The name choice it's quite obvious. I didn't want to put any fancy name on it, j
 
 It's a hobby operating system for x86 computers (x86_64 in the future, maybe) written in C.
 
-It's still in its very early development stages, AKA, I'm toying around with it when I have spare time.
+It's in its primitive releases. There's a user shell with 2 or 3 usable commands so far. It can allocate memory.
 
 ### Future goals (probably)
 
 Some of these goals won't even be achieved, I think.
 
-- Create user input routines.
 - Create logging and debugging routines.
 - Create file system management (namely FAT32, NTFS, ext2/3/4 and others).
 - Create system utilities and integrate RTC from BIOS.

@@ -21,7 +21,7 @@ The name choice it's quite obvious. I didn't want to put any fancy name on it, j
 It's a hobby operating system for x86 computers (x86_64 in the future, maybe) written in C.
 
 It's in its primitive releases, as you can see in the screenshot below. There's a user shell with 2 or 3 usable commands so far. It can allocate memory.
-![Screenshot](docs/screenshot1.png)
+![Screenshot](screenshot1.png)
 
 
 ### Future goals (probably)

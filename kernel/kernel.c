@@ -18,15 +18,15 @@ void kernel_main() {
     kprint_at("Welcome to yuuOS!\n", 29, 11);
     isr_install();
     irq_install();
-    printf("HELP for available commands.\n>");
+    printf("Type 'help' for available commands. Lowercase only.\n>");
 }
 
 void user_input(char *input) {
-    if (strcmp(input, "END") == 0) {
+    if (strcmp(input, "end") == 0) {
         clear_screen();
         kprint_at("CPU halted. Now you can manually shut down. Bye!", 9, 13);
         asm volatile("hlt");
-    } else if (strcmp(input, "PAGE") == 0) {
+    } else if (strcmp(input, "page") == 0) {
         u32 phys_addr;
         u32 page = malloc(1000, 1, &phys_addr);
         char page_str[16] = "";
@@ -39,17 +39,17 @@ void user_input(char *input) {
         printf(phys_str);
         printf("\n");
     }
-    else if (strcmp(input, "HELP") == 0){
-        printf("\nAvailable commands:\nABOUT - Shows system info.\nCLEAR - Clear screen.\nCPUID - Identifies CPU. (TODO)\n");
-        printf("END - Shuts down.\nPAGE - Requests a memory page.\n");
+    else if (strcmp(input, "help") == 0){
+        printf("\nAvailable commands:\nabout - Shows OS info.\nclear - Clear screen.\ncpuid - Identifies CPU. (TODO)\n");
+        printf("end - Shuts down.\npage - Requests a memory page.\n");
     }
-    else if (strcmp(input, "NAME") == 0){
+    else if (strcmp(input, "name") == 0){
         printf("Hello there, user! Hope you have a great day!");
     }
-    else if (strcmp(input, "ABOUT") == 0){
+    else if (strcmp(input, "about") == 0){
         about();
     }
-    else if (strcmp(input, "CLEAR") == 0){
+    else if (strcmp(input, "clear") == 0){
         clear_screen();
     }
     /*else if (strcmp(input, "CPUID") == 0){

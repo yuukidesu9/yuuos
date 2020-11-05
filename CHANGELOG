@@ -1,12 +1,8 @@
-2020-11-05 - Updated CHANGELOG
-2020-11-05 - Add CHANGELOG
-2020-11-05 - Add LICENSE
-2020-11-05 - Delete LICENSE
+2020-11-05 - Left Shift now works in shell. Try it!
 2020-11-05 - Initial ATA/IDE support
 2020-11-05 - LIBC compatibility fix
 2020-11-05 - Added screen clearing command.
 2020-11-05 - BIOS shutdown test fail
-2020-10-30 - Updated README
 2020-10-30 - Initial mouse code
 2020-10-10 - Updated license from MIT to GPL
 2020-09-17 - First release
@@ -15,21 +11,11 @@
 2020-09-16 - Added branding string
 2020-09-16 - Added textmode screen reference
 2020-09-16 - New strings :3
-2020-09-15 - Updated Readme
-2020-09-15 - Updated Readme
 2020-09-15 - Code reupload.
-2020-09-15 - Updated gitignore
 2020-09-15 - Basic text video driver (80x25)
-2020-09-12 - Update .gitignore
-2020-09-12 - Update LICENSE
-2020-09-12 - Now with a basic textmode VGA driver!
-2020-09-12 - Makefile fixes
+2020-09-12 - Now with a basic textmode VGA driver
 2020-09-12 - Makefile fixes
 2020-09-12 - Makefile crafted
-2020-09-11 - Create FUNDING.yml
-2020-09-11 - Updated readme file.
-2020-09-11 - Updated readme file.
-2020-09-08 - Updated Readme file
 2020-09-08 - The bootloader is here!
 2020-09-08 - I present you... Naka-chan.
 2020-09-08 - h
@@ -41,7 +27,5 @@
 2020-08-23 - Updated boot sector - Please read it
 2020-08-23 - Added kernel entry.
 2020-08-23 - The kernel is finally here!
-2020-08-22 - Updated Read-me
-2020-08-22 - Readme updated
 2020-08-22 - Bootsector added
 2019-09-24 - Initial commit

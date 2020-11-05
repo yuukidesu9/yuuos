@@ -24,7 +24,7 @@ void kernel_main() {
 void user_input(char *input) {
     if (strcmp(input, "END") == 0) {
         clear_screen();
-        kprint_at("CPU halted. Now you can safely shut down your machine. Bye!", 9, 13);
+        kprint_at("CPU halted. Now you can manually shut down. Bye!", 9, 13);
         asm volatile("hlt");
     } else if (strcmp(input, "PAGE") == 0) {
         u32 phys_addr;
@@ -40,30 +40,41 @@ void user_input(char *input) {
         kprint("\n");
     }
     else if (strcmp(input, "HELP") == 0){
-        kprint("\nAvailable commands:\nEND - Halts the CPU.\n");
+        kprint("\nAvailable commands:\nEND - Shuts down.\n");
         kprint("PAGE - Requests a memory page.\nVER - Shows current version.\n");
     }
     else if (strcmp(input, "NAME") == 0){
         kprint("Hello there, user! Hope you have a great day!");
     }
-    else if (strcmp(input, "VER") == 0){
-        kprint("\n                         .d88888b.  .d8888b.\n");
-        kprint("                        d88P\" \"Y88bd88P  Y88b\n");
-        kprint("                        888     888Y88b.\n");
-        kprint("888  888888  888888  888888     888 \"Y888b.\n");
-        kprint("888  888888  888888  888888     888    \"Y88b.\n");
-        kprint("888  888888  888888  888888     888      \"888\n");
-        kprint("Y88b 888Y88b 888Y88b 888Y88b. .d88PY88b  d88P\n");
-        kprint("\"Y88888 \"Y88888 \"Y88888 \"Y88888P\"  \"Y8888P\"\n");
-        kprint("     888\n");
-        kprint("Y8b d88P                    The foxy guy's OS\n");
-        kprint("\"Y88P\"\n\n");
-        kprint("yuuOS, version 0.1\nCompile date: Sep 17, 2020\n\nLead development: YuukiDesu9\n");
-        kprint("Special thanks to: cfenollosa, SagiruCooper and PivotPedro");
+    else if (strcmp(input, "ABOUT") == 0){
+        about();
     }
+    /*else if (strcmp(input, "CPUID") == 0){
+        cpuid();
+    }*/
     else {
         kprint(input);
         kprint(" is not a recognizable command. Try another one.");
     }
     kprint("\n>");
 }
+
+void about(){
+    kprint("\n                         .d88888b.  .d8888b.\n");
+    kprint("                        d88P\" \"Y88bd88P  Y88b\n");
+    kprint("                        888     888Y88b.\n");
+    kprint("888  888888  888888  888888     888 \"Y888b.\n");
+    kprint("888  888888  888888  888888     888    \"Y88b.\n");
+    kprint("888  888888  888888  888888     888      \"888\n");
+    kprint("Y88b 888Y88b 888Y88b 888Y88b. .d88PY88b  d88P\n");
+    kprint("\"Y88888 \"Y88888 \"Y88888 \"Y88888P\"  \"Y8888P\"\n");
+    kprint("     888\n");
+    kprint("Y8b d88P                    The foxy guy's OS\n");
+    kprint("\"Y88P\"\n\n");
+    kprint("Version 0.1 beta 2\nCompile date: Nov 5, 2020\n\nLead development: YuukiDesu9\n");
+    kprint("Special thanks to: cfenollosa, AlgorithMan.de, wuffuccino and DuqueDuk");
+}
+
+/*void cpuid(){
+    
+}*/

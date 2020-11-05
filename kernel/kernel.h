@@ -3,4 +3,7 @@
 
 void user_input(char *input);
 
+void about();
+//void cpuid();
+
 #endif

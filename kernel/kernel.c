@@ -40,14 +40,17 @@ void user_input(char *input) {
         kprint("\n");
     }
     else if (strcmp(input, "HELP") == 0){
-        kprint("\nAvailable commands:\nEND - Shuts down.\n");
-        kprint("PAGE - Requests a memory page.\nVER - Shows current version.\n");
+        kprint("\nAvailable commands:\nABOUT - Shows system info.\nCLEAR - Clear screen.\nCPUID - Identifies CPU. (TODO)\n");
+        kprint("END - Shuts down.\nPAGE - Requests a memory page.\n");
     }
     else if (strcmp(input, "NAME") == 0){
         kprint("Hello there, user! Hope you have a great day!");
     }
     else if (strcmp(input, "ABOUT") == 0){
         about();
+    }
+    else if (strcmp(input, "CLEAR") == 0){
+        clear_screen();
     }
     /*else if (strcmp(input, "CPUID") == 0){
         cpuid();

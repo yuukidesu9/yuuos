@@ -18,7 +18,7 @@ void kernel_main() {
     kprint_at("Welcome to yuuOS!\n", 29, 11);
     isr_install();
     irq_install();
-    kprint("Version 0.1\nType HELP for available commands.\n>");
+    printf("HELP for available commands.\n>");
 }
 
 void user_input(char *input) {
@@ -28,23 +28,23 @@ void user_input(char *input) {
         asm volatile("hlt");
     } else if (strcmp(input, "PAGE") == 0) {
         u32 phys_addr;
-        u32 page = kmalloc(1000, 1, &phys_addr);
+        u32 page = malloc(1000, 1, &phys_addr);
         char page_str[16] = "";
         hex_to_ascii(page, page_str);
         char phys_str[16] = "";
         hex_to_ascii(phys_addr, phys_str);
-        kprint("Memory page: ");
-        kprint(page_str);
-        kprint("\nPhysical address: ");
-        kprint(phys_str);
-        kprint("\n");
+        printf("Memory page: ");
+        printf(page_str);
+        printf("\nPhysical address: ");
+        printf(phys_str);
+        printf("\n");
     }
     else if (strcmp(input, "HELP") == 0){
-        kprint("\nAvailable commands:\nABOUT - Shows system info.\nCLEAR - Clear screen.\nCPUID - Identifies CPU. (TODO)\n");
-        kprint("END - Shuts down.\nPAGE - Requests a memory page.\n");
+        printf("\nAvailable commands:\nABOUT - Shows system info.\nCLEAR - Clear screen.\nCPUID - Identifies CPU. (TODO)\n");
+        printf("END - Shuts down.\nPAGE - Requests a memory page.\n");
     }
     else if (strcmp(input, "NAME") == 0){
-        kprint("Hello there, user! Hope you have a great day!");
+        printf("Hello there, user! Hope you have a great day!");
     }
     else if (strcmp(input, "ABOUT") == 0){
         about();
@@ -56,26 +56,26 @@ void user_input(char *input) {
         cpuid();
     }*/
     else {
-        kprint(input);
-        kprint(" is not a recognizable command. Try another one.");
+        printf(input);
+        printf(" is not a recognizable command. Try another one.");
     }
-    kprint("\n>");
+    printf("\n>");
 }
 
 void about(){
-    kprint("\n                         .d88888b.  .d8888b.\n");
-    kprint("                        d88P\" \"Y88bd88P  Y88b\n");
-    kprint("                        888     888Y88b.\n");
-    kprint("888  888888  888888  888888     888 \"Y888b.\n");
-    kprint("888  888888  888888  888888     888    \"Y88b.\n");
-    kprint("888  888888  888888  888888     888      \"888\n");
-    kprint("Y88b 888Y88b 888Y88b 888Y88b. .d88PY88b  d88P\n");
-    kprint("\"Y88888 \"Y88888 \"Y88888 \"Y88888P\"  \"Y8888P\"\n");
-    kprint("     888\n");
-    kprint("Y8b d88P                    The foxy guy's OS\n");
-    kprint("\"Y88P\"\n\n");
-    kprint("Version 0.1 beta 2\nCompile date: Nov 5, 2020\n\nLead development: YuukiDesu9\n");
-    kprint("Special thanks to: cfenollosa, AlgorithMan.de, wuffuccino and DuqueDuk");
+    printf("\n                         .d88888b.  .d8888b.\n");
+    printf("                        d88P\" \"Y88bd88P  Y88b\n");
+    printf("                        888     888Y88b.\n");
+    printf("888  888888  888888  888888     888 \"Y888b.\n");
+    printf("888  888888  888888  888888     888    \"Y88b.\n");
+    printf("888  888888  888888  888888     888      \"888\n");
+    printf("Y88b 888Y88b 888Y88b 888Y88b. .d88PY88b  d88P\n");
+    printf("\"Y88888 \"Y88888 \"Y88888 \"Y88888P\"  \"Y8888P\"\n");
+    printf("     888\n");
+    printf("Y8b d88P                    The foxy guy's OS\n");
+    printf("\"Y88P\"\n\n");
+    printf("Version 0.1 beta 2\nCompile date: Nov 5, 2020\n\nLead development: YuukiDesu9\n");
+    printf("Special thanks to: cfenollosa, AlgorithMan.de, wuffuccino and DuqueDuk");
 }
 
 /*void cpuid(){

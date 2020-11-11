@@ -41,14 +41,11 @@ Some of these goals won't even be achieved, I think.
 Here, I'd like to leave some special thanks to:
 
 - cfenollosa and his [OS tutorial](https://github.com/cfenollosa/os-tutorial). It helped me a lot with the structuring and setup.
-- PivotPedro
-- SagiruCooper
+- DuqueDuk
 - the people at OSDev Wiki
 - PurrTech! Telegram Group. You guys are awesome!
 - mom and (maybe) dad
 - and, last but not least, YOU, user!
 
-```markdown
-Ignore this part. It's just for reference.
-[Link](url)
-```
+# Important!
+# Development moved to [GitLab](https://gitlab.com/yuukidesu9/yuuos/)!

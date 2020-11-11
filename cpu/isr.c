@@ -133,8 +133,8 @@ void register_interrupt_handler(u8 n, isr_t handler) {
 void irq_handler(registers_t r) {
     /* After every interrupt we need to send an EOI to the PICs
      * or they will not send another interrupt again */
-    if (r.int_no >= 40) port_byte_out(0xA0, 0x20); /* slave */
-    port_byte_out(0x20, 0x20); /* master */
+    if (r.int_no >= 40) outb(0xA0, 0x20); // slave/secondary
+    outb(0x20, 0x20); // master/primary
 
     /* Handle the interrupt in a more modular way */
     if (interrupt_handlers[r.int_no] != 0) {
@@ -144,10 +144,10 @@ void irq_handler(registers_t r) {
 }
 
 void irq_install() {
-    /* Enable interruptions */
+    // Enable interrupts
     asm volatile("sti");
-    /* IRQ0: timer */
+    // IRQ0: timer
     init_timer(50);
-    /* IRQ1: keyboard */
+    // IRQ1: keyboard
     init_keyboard();
 }

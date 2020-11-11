@@ -33,12 +33,16 @@ const char sc_ascii_caps[] = { '\0', '\0', '!', '@', '#', '$', '%', '^',
 static int isCaps;
 
 static void keyboard_callback(registers_t regs) {
-    /* The PIC leaves us the scancode in port 0x60 */
-    u8 scancode = port_byte_in(0x60);
-    /*char sc_hex = '\0';
+    // The PIC leaves us the scancode in port 0x60
+    u8 scancode = inb(0x60);
+    /* For scancode debug purposes:
+    
+    char sc_hex = '\0';
     hex_to_ascii((int)scancode, sc_hex);
     append(sc_hex, '\n');
-    printf(sc_hex);*/
+    printf(sc_hex);
+    
+    */
     char letter;
     if (scancode == 0x36){
         isCaps = 1;
@@ -75,7 +79,6 @@ static void keyboard_callback(registers_t regs) {
         else{
             letter = sc_ascii[(int)scancode];
         }
-        /* Remember that printf only accepts char[] */
         char str[2] = {letter, '\0'};
         append(key_buffer, letter);
         printf(str);

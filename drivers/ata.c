@@ -14,12 +14,12 @@ void PIO_readsec(u32 targetaddr, u32 lba, u8 sector_count)
 {
 
 	ATA_wait_BSY();
-	port_byte_out(0x1F6,0xE0 | ((lba >>24) & 0xF));
-	port_byte_out(0x1F2,sector_count);
-	port_byte_out(0x1F3, (u8) lba);
-	port_byte_out(0x1F4, (u8)(lba >> 8));
-	port_byte_out(0x1F5, (u8)(lba >> 16)); 
-	port_byte_out(0x1F7,0x20); //Send read command
+	outb(0x1F6,0xE0 | ((lba >>24) & 0xF));
+	outb(0x1F2,sector_count);
+	outb(0x1F3, (u8) lba);
+	outb(0x1F4, (u8)(lba >> 8));
+	outb(0x1F5, (u8)(lba >> 16)); 
+	outb(0x1F7,0x20); //Send read command
 
 	u16 *target = (u16*) targetaddr;
     int i, j;
@@ -28,7 +28,7 @@ void PIO_readsec(u32 targetaddr, u32 lba, u8 sector_count)
 		ATA_wait_BSY();
 		ATA_wait_DRQ();
 		for(i=0;i<256;i++)
-			target[i] = port_word_in(0x1F0);
+			target[i] = inw(0x1F0);
 		target+=256;
 	}
 }
@@ -36,12 +36,12 @@ void PIO_readsec(u32 targetaddr, u32 lba, u8 sector_count)
 void PIO_writesec(u32 lba, u8 sector_count, u32* bytes)
 {
 	ATA_wait_BSY();
-	port_byte_out(0x1F6,0xE0 | ((lba >>24) & 0xF));
-	port_byte_out(0x1F2,sector_count);
-	port_byte_out(0x1F3, (u8) lba);
-	port_byte_out(0x1F4, (u8)(lba >> 8));
-	port_byte_out(0x1F5, (u8)(lba >> 16)); 
-	port_byte_out(0x1F7,0x30); //Send write command
+	outb(0x1F6,0xE0 | ((lba >>24) & 0xF));
+	outb(0x1F2,sector_count);
+	outb(0x1F3, (u8) lba);
+	outb(0x1F4, (u8)(lba >> 8));
+	outb(0x1F5, (u8)(lba >> 16)); 
+	outb(0x1F7,0x30); //Send write command
     int i, j;
 	for (j=0;j<sector_count;j++)
 	{
@@ -49,17 +49,17 @@ void PIO_writesec(u32 lba, u8 sector_count, u32* bytes)
 		ATA_wait_DRQ();
 		for(i=0;i<256;i++)
 		{
-			port_word_out(0x1F0, bytes[i]);
+			outw(0x1F0, bytes[i]);
 		}
 	}
 }
 
 static void ATA_wait_BSY()   //Wait for ATA interface to be free (BSY = 0)
 {
-	while(port_byte_in(0x1F7)&STATUS_BSY);
+	while(inb(0x1F7)&STATUS_BSY);
 }
 
 static void ATA_wait_DRQ()  //Wait fot DRQ to be 1
 {
-	while(!(port_byte_in(0x1F7)&STATUS_RDY));
+	while(!(inb(0x1F7)&STATUS_RDY));
 }

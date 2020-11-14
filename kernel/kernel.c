@@ -7,6 +7,7 @@
 // Let's call our routines.
 #include "../cpu/isr.h"
 #include "../drivers/screen.h"
+#include "../libc/stdio.h"
 #include "../libc/string.h"
 #include "../libc/mem.h"
 #include "kernel.h"
@@ -52,9 +53,6 @@ void user_input(char *input) {
     else if (strcmp(input, "clear") == 0){
         clear_screen();
     }
-    /*else if (strcmp(input, "CPUID") == 0){
-        cpuid();
-    }*/
     else {
         printf(input);
         printf(" is not a recognizable command. Try another one.");
@@ -74,10 +72,6 @@ void about(){
     printf("     888\n");
     printf("Y8b d88P                    The foxy guy's OS\n");
     printf("\"Y88P\"\n\n");
-    printf("Version 0.1 beta 2\nCompile date: Nov 5, 2020\n\nLead development: YuukiDesu9\n");
+    printf("Version 0.1.1\nCompile date: Nov 5, 2020\n\nLead development: YuukiDesu9\n");
     printf("Special thanks to: cfenollosa, AlgorithMan.de, wuffuccino and DuqueDuk");
 }
-
-/*void cpuid(){
-    
-}*/

@@ -39,10 +39,6 @@ void kprint_at(char *message, int col, int row) {
     }
 }
 
-void printf(char *message) {
-    kprint_at(message, -1, -1);
-}
-
 void kprint_backspace() {
     int offset = get_cursor_offset()-2;
     int row = get_offset_row(offset);

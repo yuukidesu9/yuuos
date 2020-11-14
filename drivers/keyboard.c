@@ -4,6 +4,7 @@
 #include "screen.h"
 #include "../libc/string.h"
 #include "../libc/function.h"
+#include "../libc/stdio.h"
 #include "../kernel/kernel.h"
 
 #define BACKSPACE 0x0E
@@ -24,13 +25,19 @@ const char sc_ascii[] = { '\0', '\0', '1', '2', '3', '4', '5', '6',
         'u', 'i', 'o', 'p', '[', ']', '0', '\0', 'a', 's', 'd', 'f', 'g', 
         'h', 'j', 'k', 'l', ';', '\'', '`', '\0', '\\', 'z', 'x', 'c', 'v', 
         'b', 'n', 'm', ',', '.', '/', '\0', '\0', '\0', ' ', '\0'};
-const char sc_ascii_caps[] = { '\0', '\0', '!', '@', '#', '$', '%', '^',     
+const char sc_ascii_caps[] = { '\0', '\0', '1', '2', '3', '4', '5', '6',     
+    '7', '8', '9', '0', '-', '=', '\0', '\0', 'Q', 'W', 'E', 'R', 'T', 'Y', 
+        'U', 'I', 'O', 'P', '[', ']', '\0', '\0', 'A', 'S', 'D', 'F', 'G', 
+        'H', 'J', 'K', 'L', ';', '\'', '`', '\0', '\\', 'Z', 'X', 'C', 'V', 
+        'B', 'N', 'M', ',', '.', '/', '\0', '\0', '\0', ' ', '\0'};
+const char sc_ascii_shift[] = { '\0', '\0', '!', '@', '#', '$', '%', '^',     
     '&', '*', '(', ')', '_', '+', '\0', '\0', 'Q', 'W', 'E', 'R', 'T', 'Y', 
         'U', 'I', 'O', 'P', '{', '}', '\0', '\0', 'A', 'S', 'D', 'F', 'G', 
         'H', 'J', 'K', 'L', ':', '\"', '~', '\0', '|', 'Z', 'X', 'C', 'V', 
         'B', 'N', 'M', '<', '>', '?', '\0', '\0', '\0', ' ', '\0'};
 
 static int isCaps;
+static int isShift;
 
 static void keyboard_callback(registers_t regs) {
     // The PIC leaves us the scancode in port 0x60
@@ -44,17 +51,13 @@ static void keyboard_callback(registers_t regs) {
     
     */
     char letter;
-    if (scancode == 0x36){
-        isCaps = 1;
+    // Left/Right Shift press
+    if ((scancode == 0x36) || (scancode == 0x2A)){
+        isShift = 1;
     }
-    if (scancode == 0xB6){
-        isCaps = 0;
-    }
-    if (scancode == 0x2A){
-        isCaps = 1;
-    }
-    if (scancode == 0xAA){
-        isCaps = 0;
+    // Left/Right Shift release
+    if ((scancode == 0xB6) || (scancode == 0xAA)){
+        isShift = 0;
     }
     if (scancode == CAPSLOCK){
         if(isCaps){
@@ -75,6 +78,9 @@ static void keyboard_callback(registers_t regs) {
     } else {
         if(isCaps){
             letter = sc_ascii_caps[(int)scancode];
+        }
+        else if(isShift){
+            letter = sc_ascii_shift[(int)scancode];
         }
         else{
             letter = sc_ascii[(int)scancode];

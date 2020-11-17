@@ -89,7 +89,7 @@ u32 indw (u32 port) {
     // but
     // *slaps CPU register*
     // this baby can hold 32-bit values in a jiff! Piece of cake!
-    __asm__("in %%dx, %%eax" : : "=a" (result) : "d" (port));
+    __asm__("in %%dx, %%eax" : "=a" (result) : "d" (port));
     
     // Return our thingie, and done!
     return result;

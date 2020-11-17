@@ -87,7 +87,7 @@ u32 indw (u32 port) {
     // a new companion: the EAX register!
     // EAX stands for Expanded Address eXtension. Same as always,
     // but
-    // *slaps CPU regiter*
+    // *slaps CPU register*
     // this baby can hold 32-bit values in a jiff! Piece of cake!
     __asm__("in %%dx, %%eax" : : "=a" (result) : "d" (port));
     

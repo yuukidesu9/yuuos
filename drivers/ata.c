@@ -49,7 +49,7 @@ void PIO_writesec(u32 lba, u8 sector_count, u32* bytes)
 		ATA_wait_DRQ();
 		for(i=0;i<256;i++)
 		{
-			outw(0x1F0, bytes[i]);
+			outdw(0x1F0, bytes[i]);
 		}
 	}
 }

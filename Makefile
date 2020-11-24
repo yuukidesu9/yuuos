@@ -14,14 +14,13 @@ CFLAGS = -g -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartf
 os_image.img: boot/bootsect.bin kernel.bin
 	cat $^ > build/os_image.img
 
+
 # '--oformat binary' deletes all symbols as a collateral, so we don't need
 # to 'strip' them manually on this case
+
 kernel.bin: boot/kernel_entry.o ${OBJ}
 	i686-elf-ld -o $@ -Ttext 0x1000 $^ --oformat binary
 
-# Used for debugging purposes
-kernel.elf: boot/kernel_entry.o ${OBJ}
-	i686-elf-ld -o $@ -Ttext 0x1000 $^ 
 
 run: os_image.img
 	qemu-system-i386 -fda build/os_image.img

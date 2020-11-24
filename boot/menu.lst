@@ -1,8 +1,0 @@
-default 0
-#timeout 30
-
-title Boot from HDD
-chainloader (hd0)+1
-
-title yuuOS 0.2.1
-kernel /boot/kernel.bin

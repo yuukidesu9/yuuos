@@ -33,8 +33,10 @@
 *.bin
 *.img
 *.elf
+*.iso
 
 #Dev environment files
 *.bxrc
 *.bat
 *.ld
+build/*.*

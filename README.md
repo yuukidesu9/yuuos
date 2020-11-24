@@ -5,25 +5,49 @@ An operating system, made by me, in my programming journey. It's in its very ear
 I'm rewriting some of the code for compatibility reasons.
 
 ## Roadmap
-
+### Basic Features
 - DOS-like system shell - OK!
-- Keyboard input - OK!
-- Mempry page allocation - OK!
-- COM1 debugging - WIP/Planned
-- Disk support - WIP/Planned
-- USTAR filesystem support - Planned
+- Keyboard input - OK! (sort of)
+- Memory page allocation - OK!
+- COM1 debugging - Planned
+- Kernel event logging - Planned
+- Command arguments - WIP/Planned
+
+### File Systems
+- USTAR filesystem support - WIP
+- FAT32 filesystem support - WIP/Planned
+- BTRFS filesystem support - Planned
+- EXT2/3/4 filesystem support - Planned
+
+### Devices
+- CGA/EGA/VGA text-mode driver - OK!
+- CGA/EGA/VGA graphics-mode driver - OK!
+- PS/2 Keyboard driver - OK!
+- CMOS/RTC driver - OK!
 - PCI device drivers - Planned
+- Basic network device drivers - Planned
+- USB device enumerators and drivers - Planned
 - Other device drivers - Planned
+
+### Boot and Launch
 - Migration from BIOS to UEFI - Planned
 - Port VGA code to GOP - Planned
+- 32-bit-compatible kernel - OK!
 - 64-bit-compatible kernel - Planned
+
+### Graphics
 - Mouse support - Planned
 - GUI - Planned
+- Window management and GUI API - Planned
+
+### Multitasking and Apps
 - Preemptive multitasking - Planned
-- Package system - Planned
-- C library porting - Planned
-- BTRFS filesystem support - Planned
+- Package management - Planned
+- Userland C library porting - Planned
 
 ## Known errors
 
-For now, none, I think.
+- When interrupts are received, the kernel doesn't print a description. Just a "S".
+- The CPUID function is hardcoded, since I was lazy and a bit dumb.
+- I know how USTAR filesystem works, but I couldn't implement it yet because I'm being a lazy-ass motherfucker.
+- Same for FAT32.

@@ -81,7 +81,7 @@ void about(){
     vendor();
     printf("\nyuuOS is running on a ");
     cpubrand();
-    printf("CPU.\n\nVersion 0.1.2\nCompile date: Nov 17, 2020\n\nLead development: YuukiDesu9\n");
+    printf("CPU.\n\nVersion 0.2.1\nCompile date: Nov 27, 2020\n\nLead development: YuukiDesu9\n");
     printf("Special thanks to: cfenollosa, AlgorithMan.de, wuffuccino and DuqueDuk");
 }
 

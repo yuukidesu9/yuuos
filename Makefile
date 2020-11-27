@@ -14,7 +14,7 @@ CFLAGS = -g -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartf
 # First rule is run by default
 os_image.img: boot/bootsect.bin kernel.bin
 	cat $^ > build/os_image.img
-	echo "Image created."
+	$(info Image created.)
 
 # some variables to build the ISO.
 FILESIZE = $(shell stat -c%s "build/os_image.img")
@@ -28,14 +28,14 @@ os_boot.iso: _floppy.img _floppy.catalog
 
 _floppy.catalog: _floppy.img
 	touch build/_floppy.catalog
-	echo "Catalog file built."
+	$(info Catalog file built.)
     
 _floppy.img: os_image.img
-	echo "Filesize: $(FILESIZE), No. of sectors: $(DIVIDED)"
+	$(info Filesize: $(FILESIZE), No. of sectors: $(DIVIDED))
 	dd if="/dev/zero" bs=$(SECTORSIZE) count=$(FILLERSIZE) of="build/_filler.img"
-	echo "Filler created."
+	$(info Filler created.)
 	cat build/os_image.img build/_filler.img > build/_floppy.img
-	echo "Secondary image created."
+	$(info Secondary image created.)
 
 # '--oformat binary' deletes all symbols as a collateral, so we don't need
 # to 'strip' them manually on this case
@@ -43,11 +43,27 @@ _floppy.img: os_image.img
 kernel.bin: boot/kernel_entry.o ${OBJ}
 	i686-elf-ld -o $@ -Ttext 0x1000 $^ --oformat binary
 
-run: os_image.img
+help:
+	$(info Commands of this makefile:)
+	$(info make: builds a standalone 1.44MB floppy image)
+	$(info make qemu-floppy: builds and runs a 1.44MB floppy image on QEMU)
+	$(info make qemu-iso: builds and runs an ISO image on QEMU)
+	$(info make vbox-iso: builds and runs an ISO image on VirtualBox)
+	$(info make vmware-iso: builds and runs an ISO image on VMWare Player)
+	$(info make clean: cleans up the build environment)
+	$(info make help: this command)
+
+qemu-floppy: os_image.img
 	qemu-system-i386 -fda build/os_image.img
     
-runiso: os_boot.iso
+qemu-iso: os_boot.iso
 	qemu-system-i386 -cdrom build/os_boot.iso
+    
+vbox-iso: os_boot.iso
+	VBoxManage startvm "yuuOS"
+
+vmware-iso: os_boot.iso
+	vmrun start "../Virtual Machines/yuuOS/yuuOS.vmx"
 
 # Generic rules for wildcards
 # To make an object, always compile from its .c

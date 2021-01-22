@@ -15,6 +15,8 @@
 // And here's our main function!
 // Don't mind, it's a bit barebones by now.
 
+void quit_sys();
+
 void kernel_main() {
     clear_screen();
     kprint_at("Welcome to yuuOS!\n", 29, 11);

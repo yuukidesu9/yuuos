@@ -14,3 +14,9 @@ Also, there's the thing about a package management system. I'll go with the prov
 I also gotta have a cross-compiler to compile yuuOS-ready binaries.
 
 And, since we're not in 2010 anymore, a 64-bit kernel, with 64-bit system calls and everything.
+
+I've been thinking about a little something: using the current kernel with VERY basic drivers as a 2nd-stage loader for the OS. So the boot order can be:
+
+1. Bootloader (16-bit/protected mode)
+2. 2nd-stage loader (32-bit/real mode)
+3. Kernel (32/64-bit/real/long mode)

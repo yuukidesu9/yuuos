@@ -11,13 +11,13 @@
 #include "../libc/stdio.h"
 #include "../libc/string.h"
 #include "../libc/mem.h"
-#include "kernel.h"
+#include "loader.h"
 // And here's our main function!
 // Don't mind, it's a bit barebones by now.
 
 void quit_sys();
 
-void kernel_main() {
+void loader_main() {
     clear_screen();
     kprint_at("Welcome to yuuOS!\n", 29, 11);
     isr_install();

@@ -1,5 +1,5 @@
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c libc/*.c)
-HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h libc/*.h)
+C_SOURCES = $(wildcard loader/*.c drivers/*.c cpu/*.c libc/*.c)
+HEADERS = $(wildcard loader/*.h drivers/*.h cpu/*.h libc/*.h)
 # Nice syntax for file extension replacement
 OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o}
 
@@ -63,7 +63,7 @@ vbox-iso: os_boot.iso
 	VBoxManage startvm "yuuOS"
 
 vmware-iso: os_boot.iso
-	vmrun start "../Virtual Machines/yuuOS/yuuOS.vmx"
+	vmrun start "../../Virtual Machines/yuuOS/yuuOS.vmx"
 
 # Generic rules for wildcards
 # To make an object, always compile from its .c
@@ -78,4 +78,4 @@ vmware-iso: os_boot.iso
 
 clean:
 	rm -rf *.bin *.dis *.o *.elf
-	rm -rf kernel/*.o boot/*.bin drivers/*.o boot/*.o cpu/*.o libc/*.o
+	rm -rf loader/*.o boot/*.bin drivers/*.o boot/*.o cpu/*.o libc/*.o

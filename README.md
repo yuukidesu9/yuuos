@@ -8,22 +8,22 @@ I'm rewriting some of the code for compatibility reasons.
 ### Basic Features
 - DOS-like system shell - OK!
 - Keyboard input - OK! (sort of)
-- Memory page allocation - OK!
+- Memory page allocation - OK! (sort of)
 - COM1 debugging - Planned
 - Kernel event logging - Planned
-- Command arguments - WIP/Planned
+- Command arguments - Planned
 
 ### File Systems
-- USTAR filesystem support - WIP
-- FAT32 filesystem support - WIP/Planned
+- USTAR filesystem support - WIP/Planned
+- FAT32 filesystem support - Planned
 - BTRFS filesystem support - Planned
 - EXT2/3/4 filesystem support - Planned
 
 ### Devices
 - CGA/EGA/VGA text-mode driver - OK!
 - CGA/EGA/VGA graphics-mode driver - OK!
-- PS/2 Keyboard driver - OK!
-- CMOS/RTC driver - OK!
+- PS/2 Keyboard driver - WIP/OK
+- CMOS/RTC driver - Planned
 - PCI device drivers - Planned
 - Basic network device drivers - Planned
 - USB device enumerators and drivers - Planned
@@ -32,7 +32,7 @@ I'm rewriting some of the code for compatibility reasons.
 ### Boot and Launch
 - Migration from BIOS to UEFI - Planned
 - Port VGA code to GOP - Planned
-- 32-bit-compatible kernel - OK!
+- 32-bit-compatible kernel - WIP
 - 64-bit-compatible kernel - Planned
 
 ### Graphics

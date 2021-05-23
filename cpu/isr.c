@@ -1,6 +1,6 @@
 #include "isr.h"
 #include "idt.h"
-#include "../drivers/screen.h"
+#include "../drivers/textmode.h"
 #include "../drivers/keyboard.h"
 #include "../libc/string.h"
 #include "../libc/stdio.h"

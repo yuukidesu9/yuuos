@@ -1,7 +1,7 @@
 #include "keyboard.h"
 #include "../cpu/ports.h"
 #include "../cpu/isr.h"
-#include "screen.h"
+#include "textmode.h"
 #include "../libc/string.h"
 #include "../libc/function.h"
 #include "../libc/stdio.h"

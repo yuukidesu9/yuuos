@@ -1,7 +1,7 @@
 #include "utils.h"
 #include "../libc/stdio.h"
 #include "../libc/string.h"
-#include "../drivers/screen.h"
+#include "../drivers/textmode.h"
 
 void vendor(){
     char vendstr[12];

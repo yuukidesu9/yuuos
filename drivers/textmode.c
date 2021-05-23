@@ -1,4 +1,4 @@
-#include "screen.h"
+#include "textmode.h"
 #include "../cpu/ports.h"
 #include "../libc/mem.h"
 

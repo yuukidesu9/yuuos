@@ -1,5 +1,5 @@
-#ifndef SCREEN_H
-#define SCREEN_H
+#ifndef TEXTMODE_H
+#define TEXTMODE_H
 
 #include "../cpu/type.h"
 

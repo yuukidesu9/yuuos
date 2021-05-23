@@ -7,7 +7,7 @@
 // Let's call our routines.
 #include "../cpu/isr.h"
 #include "../cpu/utils.h"
-#include "../drivers/screen.h"
+#include "../drivers/textmode.h"
 #include "../libc/stdio.h"
 #include "../libc/string.h"
 #include "../libc/mem.h"

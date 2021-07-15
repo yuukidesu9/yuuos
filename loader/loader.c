@@ -22,7 +22,7 @@ void loader_main() {
     kprint_at("Welcome to yuuOS Minimal!\nYou are on loader mode.\n", 29, 11);
     isr_install();
     irq_install();
-    printf("Type 'help' for available commands. Lowercase only.\n>");
+    printf("Type 'help' for available commands. Lowercase only.\n> ");
 }
 
 void user_input(char *input) {
@@ -61,10 +61,9 @@ void user_input(char *input) {
         clear_screen();
     }
     else {
-        printf(input);
         printf(" is not a recognizable command. Try another one.");
     }
-    printf("\n>");
+    printf("\n> ");
 }
 
 void about(){
@@ -89,6 +88,6 @@ void about(){
 
 void quit_sys(){
     clear_screen();
-    kprint_at("CPU halted. Now you can manually shut down. Bye!", 9, 13);
+    kprint_at("CPU halted. Now you can manually shut down. Bye!", 11, 13);
     asm volatile("hlt");
 }

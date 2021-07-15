@@ -12,6 +12,7 @@
 #define CAPSLOCK 0x3A
 
 static char key_buffer[256];
+static int buffersize = 0;
 
 #define SC_MAX 58
 const char *sc_name[] = { "ERROR", "Esc", "1", "2", "3", "4", "5", "6", 
@@ -69,12 +70,16 @@ static void keyboard_callback(registers_t regs) {
     }
     if (scancode > SC_MAX) return;
     if (scancode == BACKSPACE) {
-        backspace(key_buffer);
-        kprint_backspace();
+        buffersize--;
+        if(buffersize >= 0){
+            backspace(key_buffer);
+            kprint_backspace();
+        }
     } else if (scancode == ENTER) {
         printf("\n");
         user_input(key_buffer);
         key_buffer[0] = '\0';
+        buffersize = 0;
     } else {
         if(isCaps){
             letter = sc_ascii_caps[(int)scancode];
@@ -87,6 +92,7 @@ static void keyboard_callback(registers_t regs) {
         }
         char str[2] = {letter, '\0'};
         append(key_buffer, letter);
+        buffersize++;
         printf(str);
     }
     UNUSED(regs);

@@ -12,6 +12,7 @@
 #include "../libc/string.h"
 #include "../libc/mem.h"
 #include "loader.h"
+#include "../sysinfo.h"
 // And here's our main function!
 // Don't mind, it's a bit barebones by now.
 
@@ -46,7 +47,7 @@ void user_input(char *input) {
         printf("\n");
     }
     else if (strcmp(input, "help") == 0){
-        printf("\nAvailable commands:\nabout / info - Shows OS info.\nclear - Clear screen.\n");
+        printf("\nAvailable commands:\nabout / info / uname - Shows OS info.\nclear - Clear screen.\n");
         printf("exit / quit / end - Shuts down.\npage - Requests a memory page.\n");
     }
     else if (strcmp(input, "name") == 0){
@@ -57,14 +58,38 @@ void user_input(char *input) {
     }
     else if (strcmp(input, "info") == 0) {
         about();
-    } else if (strcmp(input, "clear") == 0){
+    }
+    else if (strcmp(input, "clear") == 0){
         clear_screen();
+    }
+    else if ((strcmp(input, "uname") == 0)){
+        printf("\n");
+        printf(SYSKERNEL);
+        printf(" ");
+        printf(KERNELVER);
+        printf(" ");
+        printf(SYSARCH);
     }
     else {
         printf(" is not a recognizable command. Try another one.");
     }
     printf("\n> ");
 }
+
+/*void uname_all(){
+    printf("\n");
+    printf("\nyuuOS");
+    printf(" ");
+    printf(KERNELVER);
+    printf(" ");
+    printf(TIMESTAMP);
+    printf(" ");
+    vendor();
+    printf("(r) ");
+    cpubrand();
+    printf(" ");
+    printf(ARCH);
+}*/
 
 void about(){
     printf("\n                         .d88888b.  .d8888b.\n");
@@ -78,11 +103,7 @@ void about(){
     printf("     888\n");
     printf("Y8b d88P                    The foxy guy's OS\n");
     printf("\"Y88P\"\n\n");
-    printf("Processor vendor: ");
-    vendor();
-    printf("\nyuuOS is running on a ");
-    cpubrand();
-    printf("CPU.\n\nVersion 0.2.1\nCompile date: Nov 27, 2020\n\nLead development: YuukiDesu9\n");
+    printf("Lead development: YuukiDesu9\n");
     printf("Special thanks to: cfenollosa, AlgorithMan.de, wuffuccino and DuqueDuk");
 }
 

@@ -38,14 +38,16 @@ void cpubrand(){
 void pickStr(int eaxValue){
     char brandstr[16];
     int brand[4];
-    if (eaxValue == 1) {
-    __asm__("mov $0x80000002 , %eax\n\t");
-    }
-    else if (eaxValue == 2) {
-        __asm__("mov $0x80000003 , %eax\n\t");
-    }
-    else if (eaxValue == 3) {
-        __asm__("mov $0x80000004 , %eax\n\t");
+    switch(eaxValue){
+        case 1:
+            __asm__("mov $0x80000002 , %eax\n\t");
+            break;
+        case 2:
+            __asm__("mov $0x80000003 , %eax\n\t");
+            break;
+        case 3:
+            __asm__("mov $0x80000004 , %eax\n\t");
+            break;
     }
     __asm__("cpuid\n\t");
     __asm__("mov %%eax, %0\n\t":"=r" (brand[0]));

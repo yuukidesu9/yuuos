@@ -3,18 +3,18 @@ HEADERS = $(wildcard loader/*.h drivers/*.h cpu/*.h libc/*.h)
 # Nice syntax for file extension replacement
 OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o}
 
-# Change this if your cross-compiler is somewhere else
+AS = nasm
 CC = /c/i686-elf/bin/i686-elf-gcc
+LD = /c/i686-elf/bin/i686-elf-ld
 
-# -g: Use debugging symbols in gcc
-CFLAGS = -g -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -Wall -Wextra
-
+CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -ffreestanding -c
+LDFLAGS = -T link.ld -melf_i386
 
 
 # First rule is run by default
-os_image.img: boot/bootsect.bin kernel.bin
-	cat $^ > build/os_image.img
-	$(info Image created.)
+#os_image.img: boot/bootsect.bin kernel.bin
+	#cat $^ > build/os_image.img
+	#$(info Image created.)
 
 # some variables to build the ISO.
 FILESIZE = $(shell stat -c%s "build/os_image.img")
@@ -24,7 +24,12 @@ FLOPPYSECS = 2876
 FILLERSIZE = $(shell echo $$(($(FLOPPYSECS) - $(DIVIDED))))
 
 os_boot.iso: _floppy.img _floppy.catalog
+	rm "build/os_boot.iso"
 	mkisofs -r -b "build/_floppy.img" -c "build/_floppy.catalog" -o "build/os_boot.iso" .
+
+yuuos_grub.iso: kernel.elf
+	mkisofs -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -A yuuOS -input-charset iso8859-1 -boot-info-table -o $@ build/iso
+	mv yuuos_grub.iso build/yuuos_grub.iso
 
 _floppy.catalog: _floppy.img
 	touch build/_floppy.catalog
@@ -41,25 +46,33 @@ _floppy.img: os_image.img
 # to 'strip' them manually on this case
 
 kernel.bin: boot/kernel_entry.o ${OBJ}
-	i686-elf-ld -o $@ -Ttext 0x1000 $^ --oformat binary
+	${LD} -o $@ -Ttext 0x1000 $^ --oformat binary
 
 help:
 	$(info Commands of this makefile:)
 	$(info make: builds a standalone 1.44MB floppy image)
-	$(info make qemu-floppy: builds and runs a 1.44MB floppy image on QEMU)
-	$(info make qemu-iso: builds and runs an ISO image on QEMU)
+	$(info make qemu-old-floppy: builds and runs a 1.44MB floppy image on QEMU)
+	$(info make qemu-old-iso: builds and runs an ISO image on QEMU)
+	$(info make qemu-iso: builds and runs an ISO image on QEMU - New format)
 	$(info make vbox-iso: builds and runs an ISO image on VirtualBox)
 	$(info make vmware-iso: builds and runs an ISO image on VMWare Player)
 	$(info make clean: cleans up the build environment)
 	$(info make help: this command)
 
-qemu-floppy: os_image.img
+kernel.elf: boot/loader_entry.o loader/loader.o ${OBJ}
+	${LD} ${LDFLAGS} $^ -o build/iso/boot/$@
+	$(info File kernel.elf generated successfully.)
+
+qemu-old-floppy: os_image.img
 	qemu-system-i386 -fda build/os_image.img
     
-qemu-iso: os_boot.iso
+qemu-old-iso: os_boot.iso
 	qemu-system-i386 -cdrom build/os_boot.iso
     
-vbox-iso: os_boot.iso
+qemu-iso: yuuos_grub.iso
+	qemu-system-i386 -cdrom build/yuuos_grub.iso
+    
+vbox-old-iso: os_boot.iso
 	VBoxManage startvm "yuuOS"
 
 vmware-iso: os_boot.iso
@@ -68,13 +81,13 @@ vmware-iso: os_boot.iso
 # Generic rules for wildcards
 # To make an object, always compile from its .c
 %.o: %.c ${HEADERS}
-	${CC} ${CFLAGS} -ffreestanding -c $< -o $@
+	${CC} ${CFLAGS} $< -o $@
 
 %.o: %.asm
-	nasm $< -f elf -o $@
+	${AS} $< -f elf -o $@
 
 %.bin: %.asm
-	nasm $< -f bin -o $@
+	${AS} $< -f bin -o $@
 
 clean:
 	rm -rf *.bin *.dis *.o *.elf

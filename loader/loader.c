@@ -76,21 +76,6 @@ void user_input(char *input) {
     printf("\n> ");
 }
 
-/*void uname_all(){
-    printf("\n");
-    printf("\nyuuOS");
-    printf(" ");
-    printf(KERNELVER);
-    printf(" ");
-    printf(TIMESTAMP);
-    printf(" ");
-    vendor();
-    printf("(r) ");
-    cpubrand();
-    printf(" ");
-    printf(ARCH);
-}*/
-
 void about(){
     printf("\n                         .d88888b.  .d8888b.\n");
     printf("                        d88P\" \"Y88bd88P  Y88b\n");

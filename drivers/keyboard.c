@@ -5,7 +5,7 @@
 #include "../libc/string.h"
 #include "../libc/function.h"
 #include "../libc/stdio.h"
-#include "../loader/loader.h"
+#include "../kernel/kernel.h"
 
 #define BACKSPACE 0x0E
 #define ENTER 0x1C

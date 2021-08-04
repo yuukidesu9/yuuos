@@ -59,7 +59,7 @@ help:
 	$(info make clean: cleans up the build environment)
 	$(info make help: this command)
 
-kernel.elf: boot/loader_entry.o loader/loader.o ${OBJ}
+kernel.elf: boot/loader_entry.o kernel/kernel.o ${OBJ}
 	${LD} ${LDFLAGS} $^ -o build/iso/boot/$@
 	$(info File kernel.elf generated successfully.)
 

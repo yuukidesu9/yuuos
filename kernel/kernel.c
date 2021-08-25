@@ -8,6 +8,7 @@
 #include "../cpu/isr.h"
 #include "../cpu/utils.h"
 #include "../drivers/textmode.h"
+#include "../drivers/serlcom.h"
 #include "../libc/stdio.h"
 #include "../libc/string.h"
 #include "../libc/mem.h"
@@ -23,6 +24,12 @@ void loader_main() {
     kprint_at("Welcome to yuuOS Minimal!\nYou are on loader mode.\n", 29, 11);
     isr_install();
     irq_install();
+    //initialize serial port here
+    //serial_set_baud_rate(0x3F8, 0x01); //Set rate to 115,200 baud
+    //serial_configure_line(0x3F8);
+    //if(serial_is_transmit_fifo_empty(0x3F8) == 0){
+        //do the thing...
+    //}
     printf("Type 'help' for available commands. Lowercase only.\n> ");
 }
 

@@ -40,3 +40,10 @@
 *.bat
 *.ld
 build/*.*
+*.workspace
+*.srctrlbm
+*.srctrldb
+*.project
+*.srctrlprj
+.codelite/*.*
+.vscode/*.*

@@ -2,13 +2,13 @@
 An operating system, made by me, in my programming journey. It's in its very early development stages.
 
 **Current status:** Very early alpha version.
-I'm rewriting some of the code for compatibility reasons.
+I'm rewriting some of the code for compatibility reasons, but it'll take a while, since I'm very busy with university stuff.
 
 ## Roadmap
 ### Basic Features
 - DOS-like system shell - OK!
-- Keyboard input - OK! (sort of)
-- Memory page allocation - OK! (sort of)
+- Keyboard input - being rewritten/WIP
+- Memory page allocation - being rewritten/WIP
 - COM1 debugging - Planned
 - Kernel event logging - Planned
 - Command arguments - Planned
@@ -21,7 +21,7 @@ I'm rewriting some of the code for compatibility reasons.
 
 ### Devices
 - CGA/EGA/VGA text-mode driver - OK!
-- CGA/EGA/VGA graphics-mode driver - OK!
+- CGA/EGA/VGA graphics-mode driver - being rewritten
 - PS/2 Keyboard driver - WIP/OK
 - CMOS/RTC driver - Planned
 - PCI device drivers - Planned
@@ -32,7 +32,7 @@ I'm rewriting some of the code for compatibility reasons.
 ### Boot and Launch
 - Migration from BIOS to UEFI - Planned
 - Port VGA code to GOP - Planned
-- 32-bit-compatible kernel - WIP
+- 32-bit-compatible kernel - OK!
 - 64-bit-compatible kernel - Planned
 
 ### Graphics
@@ -47,7 +47,6 @@ I'm rewriting some of the code for compatibility reasons.
 
 ## Known errors
 
-- When interrupts are received, the kernel doesn't print a description. Just a "S".
-- The CPUID function is hardcoded, since I was lazy and a bit dumb.
-- I know how USTAR filesystem works, but I couldn't implement it yet because I'm being a lazy-ass motherfucker.
+- No issues so far.
+- I know how USTAR filesystem works, but I couldn't implement it yet because I'm being a lazy-ass mf.
 - Same for FAT32.

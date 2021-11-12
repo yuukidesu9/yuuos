@@ -24,3 +24,5 @@ SECTIONS {
         *(.data)             /* all data sections from all files */
     }
 }
+
+kernel_end = .; /* kernel memory ending */

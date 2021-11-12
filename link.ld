@@ -1,4 +1,7 @@
 ENTRY(loader)                /* the name of the entry label */
+
+kernel_start = .;
+
 SECTIONS {
     . = 0x00100000;          /* the code should be loaded at 1 MB */
     .multiboot ALIGN (0x1000) :   /* align at 4 KB */
@@ -25,4 +28,4 @@ SECTIONS {
     }
 }
 
-kernel_end = .; /* kernel memory ending */
+kernel_end = .;

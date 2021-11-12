@@ -1,0 +1,7 @@
+int_to_ascii	C:\Users\Yuuki-kun.BETO-PC\Documents\SourceCode\yuuOS\libc\string.c	/^void int_to_ascii(int n, char str[]) {$/;"	function	line:7	signature:(int n, char str[])	returns:void 
+hex_to_ascii	C:\Users\Yuuki-kun.BETO-PC\Documents\SourceCode\yuuOS\libc\string.c	/^void hex_to_ascii(int n, char str[]) {$/;"	function	line:21	signature:(int n, char str[])	returns:void 
+reverse	C:\Users\Yuuki-kun.BETO-PC\Documents\SourceCode\yuuOS\libc\string.c	/^void reverse(char s[]) {$/;"	function	line:42	signature:(char s[])	returns:void 
+strlen	C:\Users\Yuuki-kun.BETO-PC\Documents\SourceCode\yuuOS\libc\string.c	/^int strlen(char s[]) {$/;"	function	line:52	signature:(char s[])	returns:int 
+append	C:\Users\Yuuki-kun.BETO-PC\Documents\SourceCode\yuuOS\libc\string.c	/^void append(char s[], char n) {$/;"	function	line:58	signature:(char s[], char n)	returns:void 
+backspace	C:\Users\Yuuki-kun.BETO-PC\Documents\SourceCode\yuuOS\libc\string.c	/^void backspace(char s[]) {$/;"	function	line:64	signature:(char s[])	returns:void 
+strcmp	C:\Users\Yuuki-kun.BETO-PC\Documents\SourceCode\yuuOS\libc\string.c	/^int strcmp(char s1[], char s2[]) {$/;"	function	line:71	signature:(char s1[], char s2[])	returns:int 

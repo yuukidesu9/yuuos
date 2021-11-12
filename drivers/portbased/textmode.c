@@ -1,6 +1,6 @@
 #include "textmode.h"
-#include "../cpu/ports.h"
-#include "../libc/mem.h"
+#include "..\..\cpu\ioports.h"
+#include "../../libc/mem.h"
 
 /* Declaration of private functions */
 int get_cursor_offset();

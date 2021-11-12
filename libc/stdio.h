@@ -1,7 +1,7 @@
 #ifndef STDIO_H
 #define STDIO_H
 
-#include "../cpu/type.h"
+#include "..\backbone\typedef.h"
 
 void printf(char *message);
 

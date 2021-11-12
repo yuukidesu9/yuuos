@@ -1,5 +1,5 @@
 #include "string.h"
-#include "../cpu/type.h"
+#include "..\backbone\typedef.h"
 
 /**
  * K&R implementation

@@ -1,7 +1,7 @@
 #ifndef TEXTMODE_H
 #define TEXTMODE_H
 
-#include "../cpu/type.h"
+#include "..\..\backbone\typedef.h"
 
 #define VIDEO_ADDRESS 0xb8000
 #define MAX_ROWS 25

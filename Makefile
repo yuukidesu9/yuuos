@@ -1,14 +1,14 @@
 rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
-C_SRCS = $(call rwildcard,backbone boot cpu drivers libc memory .,*.c)
-HEADERS = $(call rwildcard,backbone cpu drivers libc memory .,*.h)
-ASM_SRCS = $(call rwildcard,boot cpu memory,*.s)
-OBJFILES = $(call rwildcard,backbone boot cpu drivers libc memory modules .,*.o)
+C_SRCS = $(call rwildcard,backbone boot cpu drivers memory libc .,*.c)
+HEADERS = $(call rwildcard,backbone cpu drivers memory libc .,*.h)
+ASM_SRCS = $(call rwildcard,boot cpu drivers memory libc,*.s)
+OBJFILES = $(call rwildcard,backbone boot cpu drivers memory libc modules .,*.o)
 
 AS = nasm
 ASFLAGS = -f elf
 CC = /c/i686-elf/bin/i686-elf-gcc
-CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -ffreestanding -c
+CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -Wextra -Werror -ffreestanding -c
 LD = /c/i686-elf/bin/i686-elf-ld
 LDFLAGS = -T link.ld -melf_i386
 

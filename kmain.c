@@ -1,19 +1,19 @@
-/* Rouda-chan - The OS kernel loader!
+/* The OS kernel!
    --------------------------------
-   Finally, almost the heart of our OS!
-   I present you... Rouda-chan!
+   Finally, the heart of our OS!
    Code: Yuuki Sanada
 */
 // Let's call our routines.
-//#include "..\cpu\isr_old.h.old"
-//#include "..\cpu\utils_old.h.old"
-#include "drivers\portbased\textmode.h"
-#include "drivers\portbased\serlcom.h"
+#include "drivers/portbased/textmode.h"
+#include "drivers/portbased/serlcom.h"
+#include "drivers/intbased/keyboard.h"
 #include "libc/stdio.h"
 #include "libc/string.h"
 #include "libc/mem.h"
 #include "kmain.h"
-//#include "../sysinfo.h"
+#include "cpu/interrupts.h"
+#include 
+#include "memory/mem_segment.h"
 // And here's our main function!
 // Don't mind, it's a bit barebones by now.
 
@@ -97,6 +97,9 @@ void about(){*/
     printf("\"Y88P\"\n\n");
     printf("Lead development: YuukiDesu9\n");
     printf("Special thanks to: cfenollosa, AlgorithMan.de, wuffuccino and DuqueDuk");
+    
+    segment_install_gdt();
+    interrupts_install_idt();
 /*}
 
 void quit_sys(){

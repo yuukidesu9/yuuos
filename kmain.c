@@ -12,7 +12,7 @@
 #include "libc/mem.h"
 #include "kmain.h"
 #include "cpu/interrupts.h"
-#include 
+#include "cpu/ioports.h"
 #include "memory/mem_segment.h"
 // And here's our main function!
 // Don't mind, it's a bit barebones by now.

@@ -1,32 +1,17 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+# Compiled object files
 *.o
 *.obj
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
+# Compiled dynamic libraries
 *.so
 *.dylib
 *.dll
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
+# Compiled static libraries
 *.a
 *.lib
 
-# Executables
+# Executables and images
 *.exe
 *.out
 *.app
@@ -35,15 +20,6 @@
 *.elf
 *.iso
 
-#Dev environment files
+# Development environment files and build files
 *.bxrc
-*.bat
-*.ld
 build/*.*
-*.workspace
-*.srctrlbm
-*.srctrldb
-*.project
-*.srctrlprj
-.codelite/*.*
-.vscode/*.*

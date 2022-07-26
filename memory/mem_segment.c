@@ -8,7 +8,7 @@
 #define SEGMENT_CODE_TYPE 0x9A
 #define SEGMENT_DATA_TYPE 0x92
 
-void segment_init_descriptor(s32 index, u32 base_addr, u32 limit, u8 access_byte, u8 flags);
+void segment_init_descriptor(int index, unsigned int base_addr, unsigned int limit, unsigned char access_byte, unsigned char flags);
 void segment_install_gdt();
 /* Flags
 
@@ -32,7 +32,7 @@ So it's 1100, or 0x0C. */
 
 static struct GDTDescriptor gdt_descriptors[SEGMENT_DESCRIPTOR_COUNT];
 
-void segment_init_descriptor(s32 index, u32 base_addr, u32 limit, u8 access_byte, u8 flags){
+void segment_init_descriptor(int index, unsigned int base_addr, unsigned int limit, unsigned char access_byte, unsigned char flags){
     gdt_descriptors[index].base_low = base_addr & 0xFFFF;
     gdt_descriptors[index].base_middle = (base_addr >> 16) & 0xFF;
     gdt_descriptors[index].base_high = (base_addr >> 24) & 0xFF;
@@ -54,7 +54,7 @@ void segment_install_gdt(){
     //Null descriptor for GDT initialization.
 
     struct GDT* gdt_pointer = (struct GDT*)gdt_descriptors;
-    gdt_pointer->address = (u32)gdt_descriptors;
+    gdt_pointer->address = (unsigned int)gdt_descriptors;
     gdt_pointer->size = (sizeof(struct GDTDescriptor) * SEGMENT_DESCRIPTOR_COUNT) - 1;
 
     segment_init_descriptor(1, SEGMENT_BASE, SEGMENT_LIMIT, SEGMENT_CODE_TYPE, SEGMENT_FLAGS); //Kernel code segment

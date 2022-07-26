@@ -9,7 +9,7 @@
 */
 
 // Acknowledge interrupt from PIC1 or PIC2.
-void pic_acknowledge(u32 interrupt)
+void pic_acknowledge(unsigned int interrupt)
 {
 	if (interrupt < PIC_1_OFFSET || interrupt > PIC_2_END) {
 		return;

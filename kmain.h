@@ -1,8 +1,8 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
-void user_input(char *input);
+//void user_input(char *input);
 
-void about();
+//void about();
 
 #endif

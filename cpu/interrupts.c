@@ -11,16 +11,16 @@
 #define INTERRUPTS_KEYBOARD 33
 //#define INTERRUPTS_PAGING 14
 
-struct IDTdescriptor idt_descriptors[INTERRUPTS_DESCRIPTOR_COUNT];
+struct IDTDescriptor idt_descriptor[INTERRUPTS_DESCRIPTOR_COUNT];
 struct IDT idt;
 
 void interrupts_init_descriptor(int index, unsigned int address)
 {
-	idt_descriptors[index].offset_high = (address >> 16) & 0xFFFF; // High offset bits, 0..15 (31-16, MSB)
-	idt_descriptors[index].offset_low = (address & 0xFFFF); // Low offset bits, 16..31 (15-0, MSB)
+	idt_descriptor[index].offset_high = (address >> 16) & 0xFFFF; // High offset bits, 0..15 (31-16, MSB)
+	idt_descriptor[index].offset_low = (address & 0xFFFF); // Low offset bits, 16..31 (15-0, MSB)
 
-	idt_descriptors[index].segment_selector = 0x08; // The second (code) segment selector in GDT: one segment is 64b.
-	idt_descriptors[index].reserved = 0x00; // Reserved thingy for the descriptor.
+	idt_descriptor[index].segment_selector = 0x08; // The second (code) segment selector in GDT: one segment is 64b.
+	idt_descriptor[index].reserved = 0x00; // Reserved thingy for the descriptor.
 
 	/*
        Type and attributes for the descriptor:
@@ -34,16 +34,16 @@ void interrupts_init_descriptor(int index, unsigned int address)
         G   GateType (0b110 = Interrupt gate)
 	*/
     // P | DPL | SS, D and G
-	idt_descriptors[index].type_and_attr =	(0x01 << 7) | (0x00 << 6) | (0x00 << 5) | 0xe;
+	idt_descriptor[index].type_and_attr =	(0x01 << 7) | (0x00 << 6) | (0x00 << 5) | 0xe;
 }
 
 void interrupts_install_idt()
 {
-	interrupts_init_descriptor(INTERRUPTS_KEYBOARD, (u32) interrupt_handler_33);
+	interrupts_init_descriptor(INTERRUPTS_KEYBOARD, (unsigned int) interrupt_handler_33);
 	//interrupts_init_descriptor(INTERRUPTS_PAGING, (unsigned int) interrupt_handler_14);
 
 
-	idt.address = (int) &idt_descriptors;
+	idt.address = (int) &idt_descriptor;
 	idt.size = sizeof(struct IDTDescriptor) * INTERRUPTS_DESCRIPTOR_COUNT;
 	load_idt((int) &idt);
 
@@ -51,10 +51,10 @@ void interrupts_install_idt()
 	pic_remap(PIC_1_OFFSET, PIC_2_OFFSET);
 }
 
-void interrupt_handler(__attribute__((unused)) struct cpu_state cpu, u32 interrupt, __attribute__((unused)) struct stack_state stack)
+void interrupt_handler(__attribute__((unused)) struct cpu_state cpu, unsigned int interrupt, __attribute__((unused)) struct stack_state stack)
 {
-	u8 scan_code;
-	u8 ascii;
+	unsigned char scan_code;
+	unsigned char ascii;
 
 	switch (interrupt){
 		case INTERRUPTS_KEYBOARD:
@@ -63,11 +63,11 @@ void interrupt_handler(__attribute__((unused)) struct cpu_state cpu, u32 interru
 
 			if (scan_code <= KEYBOARD_MAX_ASCII) {
 				ascii = keyboard_scan_code_to_ascii(scan_code);
-				serial_configure_baud_rate(SERIAL_COM1_BASE, 4);
+				serial_set_baud_rate(SERIAL_COM1_BASE, 4);
 				serial_configure_line(SERIAL_COM1_BASE);
 				char str[1];
 				str[0] = ascii;
-				serial_write(str, 1);
+				serial_send(str, 1);
 			}
 
 			pic_acknowledge(interrupt);

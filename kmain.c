@@ -7,10 +7,10 @@
 #include "drivers/portbased/textmode.h"
 #include "drivers/portbased/serlcom.h"
 #include "drivers/intbased/keyboard.h"
-#include "libc/stdio.h"
+//#include "libc/stdio.h"
 #include "libc/string.h"
 #include "libc/mem.h"
-#include "kmain.h"
+//#include "kmain.h"
 #include "cpu/interrupts.h"
 #include "cpu/ioports.h"
 #include "memory/mem_segment.h"
@@ -19,14 +19,37 @@
 
 //void quit_sys();
 
+char test[] = "yuuOS framebuffer test";
+
 void loader_main() {
-    clear_screen();
-    kprint_at("Welcome to yuuOS Minimal!\nYou are on loader mode.\n", 29, 11);
+    //clear_screen();
+    move_cursor(6*80);
+    writestring(test, sizeof(test));
+    serial_send(test, sizeof(test));
+    segment_install_gdt();
+    //interrupts_install_idt();
+    //kprint_at("Welcome to yuuOS Minimal!\nYou are on loader mode.\n", 29, 11);
+    /*writestring("Welcome to yuuOS Minimal!\nYou are on loader mode.\n", 50);
+    writestring("\n                         .d88888b.  .d8888b.\n", 46);
+    writestring("                        d88P\" \"Y88bd88P  Y88b\n", 46);
+    writestring("                        888     888Y88b.\n", 41);
+    writestring("888  888888  888888  888888     888 \"Y888b.\n", 44);
+    writestring("888  888888  888888  888888     888    \"Y88b.\n", 46);
+    writestring("888  888888  888888  888888     888      \"888\n", 46);
+    writestring("Y88b 888Y88b 888Y88b 888Y88b. .d88PY88b  d88P\n", 46);
+    writestring("\"Y88888 \"Y88888 \"Y88888 \"Y88888P\"  \"Y8888P\"\n", 44);
+    writestring("     888\n", 9);
+    writestring("Y8b d88P                    The foxy guy's OS\n", 46);
+    writestring("\"Y88P\"\n\n", 8);
+    writestring("Lead development: YuukiDesu9\n", 29);
     //isr_install();
     //irq_install();
     //initialize serial port here
-    //serial_set_baud_rate(0x3F8, 0x01); //Set rate to 115,200 baud
-    //serial_configure_line(0x3F8);
+    serial_set_baud_rate(0x3F8, 0x01); //Set rate to 115,200 baud
+    serial_configure_line(0x3F8);
+    segment_install_gdt();
+    interrupts_install_idt();*/
+}
     //if(serial_is_transmit_fifo_empty(0x3F8) == 0){
         //do the thing...
     //}
@@ -41,8 +64,8 @@ void loader_main() {
     } else if (strcmp(input, "exit") == 0) {
         quit_sys();
     } else if (strcmp(input, "page") == 0) {
-        u32 phys_addr;
-        u32 page = malloc(1000, 1, &phys_addr);
+        unsigned int phys_addr;
+        unsigned int page = malloc(1000, 1, &phys_addr);
         char page_str[16] = "";
         hex_to_ascii(page, page_str);
         char phys_str[16] = "";
@@ -84,26 +107,13 @@ void loader_main() {
 }
 
 void about(){*/
-    printf("\n                         .d88888b.  .d8888b.\n");
-    printf("                        d88P\" \"Y88bd88P  Y88b\n");
-    printf("                        888     888Y88b.\n");
-    printf("888  888888  888888  888888     888 \"Y888b.\n");
-    printf("888  888888  888888  888888     888    \"Y88b.\n");
-    printf("888  888888  888888  888888     888      \"888\n");
-    printf("Y88b 888Y88b 888Y88b 888Y88b. .d88PY88b  d88P\n");
-    printf("\"Y88888 \"Y88888 \"Y88888 \"Y88888P\"  \"Y8888P\"\n");
-    printf("     888\n");
-    printf("Y8b d88P                    The foxy guy's OS\n");
-    printf("\"Y88P\"\n\n");
-    printf("Lead development: YuukiDesu9\n");
-    printf("Special thanks to: cfenollosa, AlgorithMan.de, wuffuccino and DuqueDuk");
+
+    //printf("Special thanks to: cfenollosa, AlgorithMan.de, wuffuccino and DuqueDuk");
     
-    segment_install_gdt();
-    interrupts_install_idt();
+
 /*}
 
 void quit_sys(){
     clear_screen();
     kprint_at("CPU halted. Now you can manually shut down. Bye!", 11, 13);*/
     //asm volatile("hlt");
-}
